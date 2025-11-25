@@ -28,7 +28,7 @@ int ft_atoi(const char *src){
         i++;
     }
     output *= negpos;
-    return (output;)
+    return (output);
 
 }
 
