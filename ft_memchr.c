@@ -1,3 +1,5 @@
+#include "libft.h"
+
 void *memchr(const void *src, int c, int size){
     int count;
     char *csrc;

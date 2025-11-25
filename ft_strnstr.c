@@ -1,4 +1,4 @@
-
+#include "libft.h"
 
 char *ft_strnstr(const char *src, const char *query, int len){
     int count;

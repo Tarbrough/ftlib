@@ -1,3 +1,5 @@
+#include "libft.h"
+
 int ft_strlcpy( char *dest, char *src, int size){
     int count;
 

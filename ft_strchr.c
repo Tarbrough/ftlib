@@ -1,3 +1,5 @@
+#include "libft.h"
+
 char *strchr(const char *src, int c){
     int count;
     count = 0;

@@ -1,3 +1,5 @@
+#include "libft.h"
+
 int ft_char_forbidden(int i);
 
 int ft_atoi(const char *src){

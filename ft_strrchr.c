@@ -1,3 +1,5 @@
+#include "libft.h"
+
 char *strrchr(const char *src, int c){
     int count;
     count = sizeof(src);
