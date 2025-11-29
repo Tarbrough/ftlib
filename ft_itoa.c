@@ -1,49 +1,49 @@
 #include "libft.h"
 
-static int len(long i);
+char *ft_itoa(int n) {
 
-char *ft_itoa(int n){
-    char *out;
-    size_t length;
-    unsigned int i;
-    size_t length_sec;
+    int is_negative = 0;
+    int i;
+    int c;
+    if ( n < 0){
+        is_negative = -1;
 
-    length = len(n);
-    out = (char *) malloc(sizeof(char) * (length + 1));
-    if (!out)
-        return(NULL);
+        //Buffer of 12 is big enough for INT_MIN
 
-    out[length] = '\0';
-    i = (n < 0) ? -n : n;
-    length_sec = length - 1;
-    if (n == 0)
-        out[0] = '0';
-    else {
-        while(i > 0){
-            out[length_sec] = (i % 10) + '0';
-            i /= 10;
-            length_sec--;
+        static char string[12];
+        char *str = string;
+
+        if (n == 0){
+            string[0] = '0';
+            string[1] = '\0';
         }
-        if (n < 0)
-            str[0] = '-';
-    }
-    return(out);
-}
-
-static int len(long i){
-    if (n == INT_MIN)
-        return(11);
-    size_t length;
-
-    length = (n == 0) ? 1 : 0;
-    if (n < 0){
-        len ++;
+        //convert to empty string if INT_MIN
+        if (n == INT_MIN){
+            const char int_min[] = "-2147483648";
+            for(i = 0; int_min[i] != '\0'; i++){
+                string[i] = int_min[i];
+            }
+            string[i] = '\0';
+            return(string);
+        }
         n = -n;
-    } else if (n > 0) {
-        while(n > 0){
-            len++;
-            n /= 10;
-        }
     }
-    return length;
+
+    while (n > 0){
+        int out = n % 10;
+        *str++ = [char]['0' + out];
+        n /= 10;
+    }
+
+    if(is_negative)
+        *str++ = '-';
+
+    *str = '\0';
+
+    for (i = 0; c = (str - string - 1); i < c; i++; c--){
+        char temp = string[i];
+        string[i] = string[c];
+        string[c] = temp;
+    }
+    return(string);
 }
