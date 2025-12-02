@@ -2,10 +2,6 @@
 
 void *ft_memcpy (void *dest, const void *src, int size){
     int count;
-    char *cdest;
-    char *csrc;
-
-
     count = 1;
     cdest = dest;
     csrc = src;
@@ -14,5 +10,5 @@ void *ft_memcpy (void *dest, const void *src, int size){
         count++;
     }
 
-    return (cdest);
+    return (dest);
 }

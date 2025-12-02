@@ -10,6 +10,8 @@ void *ft_memmove(void *dest, const void *src, int size){
 
     if (!dest && !src){
         return (0);
+    } else if (!dest) {
+        return(NULL);
     }
 
     if (dest <= src){

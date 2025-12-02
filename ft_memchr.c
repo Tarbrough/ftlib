@@ -1,15 +1,12 @@
 #include "libft.h"
 
 void *memchr(const void *src, int c, int size){
-    int count;
-    char *csrc;
+    char *csrc = src;
 
-    csrc = src;
-    count = 0;
-    while (count < size){
-        if (*csrc == c){
-            return(csrc);
+    while (int count = 0; count < size; count++){
+        if (csrc[count] == (unsigned char)c){
+            return(csrc[count]);
         }
     }
-    return (0);
+    return (NULL);
 }
