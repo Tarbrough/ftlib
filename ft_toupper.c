@@ -1,5 +1,5 @@
 #include "libft.h"
 
-int toupper(int c){
+int ft_toupper(int c){
     return (c - 32);
 }

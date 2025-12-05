@@ -1,14 +1,13 @@
 #include "libft.h"
 
-void ft_memset (void *s, int c, int size){
-    int count;
-    char *csrc;
+void *ft_memset(void *s, int c, size_t n){
+    unsigned char *csrc;
 
-    count = 0;
-    csrc = s;
-    while (count <= (size - 1)){
-        csrc[count] = c;
-        count++;
+    csrc = (unsigned char*)s;
+    while (n > 0){
+        //Test to see if this can replace a count in all code.
+        *(csrc++) = c;
+        n--;
     }
-    return (csrc);
+    return(s);
 }

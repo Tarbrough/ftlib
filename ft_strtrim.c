@@ -4,7 +4,7 @@ char *ft_strtrim(char const *s1, char const *set){
     size_t start;
     size_t end;
 
-    if (!s || !set)
+    if (!s1 || !set)
         return (NULL);
     start = 0;
     while (s1[start] && ft_isspace(s1[start]) && ft_strrchr(set, s1[start]))

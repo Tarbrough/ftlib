@@ -1,35 +1,25 @@
 #include "libft.h"
 
-char *ft_strnstr(const char *src, const char *query, int len){
-    int count;
-    int query_len;
-    int query_c;
+char *ft_strnstr(const char *src, const char *query, size_t n){
+    size_t i;
+    size_t j;
+    //attempt to unly use size_t for index from now on.
 
+    i = 0;
+    j = 0;
 
-    if (src[0] == '\0'){
-        return (query);
-    }
+    if(query[0] == 0)
+        return((char *)src);
 
-    count = 0;
-    query_len = sizeof(query);
-    while (count < sizeof(src)){
-        if (src[count] == query[0]){
-            
-            
-            query_c = 0;
-            while (query_c <= query_len-1)
-            {
-                if(src[query_c] + count == query[query_c]){
-                    if(query_c == query_len){
-                        return(char *)src;
-                    }
-                    query_c++;
-                } else {
-                    count++;
-                }
+    while(src[i] && i < n){
+        while(src[i + j] == query[j] && src[i + j] && i + j < n){
+            j++;
+            if(query[j] == 0){
+                return((char *)src + i);
             }
         }
-        count++;
+        i++;
+        j = 0;
     }
-    return ('\0');
+    return(0);
 }

@@ -1,15 +1,14 @@
 #include "libft.h"
 
-int ft_strlcpy( char *dest, char *src, int size){
-    int count;
+size_t  ft_strlcpy(char *dest, const char *src, size_t size){
+    size_t len;
+    len = ft_strlen(src);
 
-    if (!src){return (0);}
-
-    count = 1;
-    while (count <= size){
-        dest[count - 1] = src[count - 1];
-        dest[size] = '\0'; 
+    if (len + 1 < size){
+        ft_memcpy(dest, src, len + 1);
+    } else if (size != 0){
+        ft_memcpy(dest, src, size - 1);
+        dest[size -1] = 0;
     }
-    return (sizeof(src));
-    
+    return(len);
 }

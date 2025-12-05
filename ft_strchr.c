@@ -1,14 +1,20 @@
 #include "libft.h"
 
-char *strchr(const char *src, int c){
-    int count;
-    count = 0;
+char *ft_strchr(const char *src, int c){
+   unsigned int i;
+   char ch;
 
-    while (count <= sizeof(src)){
-        if(*src == c){
-            return (src);
-        }
-        count++;
-    }
-    return (0);
+   ch = (char)c;
+   i = 0;
+
+   while(src[i]){
+       if(src[i] == ch)
+           return((char *) &src[i]);
+       i++;
+   }
+
+   if (src[i] == ch)
+       return ((char *) &src[i]);
+
+   return(NULL);
 }

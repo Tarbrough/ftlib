@@ -4,27 +4,26 @@ int ft_char_forbidden(int i);
 
 int ft_atoi(const char *src){
     int output;
-    int input;
     int i;
 
     output = 0;
-    negpos = 0;
+    int negpos = 0;
     i = 0;
 
-    while (ft_char_forbidden(str[i]))
+    while (ft_char_forbidden(src[i]))
         i++;
 
-    if (str[i] == '+' && str[i + 1] != '-')
+    if (src[i] == '+' && src[i + 1] != '-')
         i++;
 
-    if (str[i] == '-'){
+    if (src[i] == '-'){
         negpos = -1;
         i++;
     }
 
-    while (str[i] && str[i] >= 48 && str[i] =<56){
+    while (src[i] && src[i] >= 48 && src[i] <= 56){
         output *= 10;
-        output += str[i] -48;
+        output += src[i] -48;
         i++;
     }
     output *= negpos;
@@ -33,9 +32,9 @@ int ft_atoi(const char *src){
 }
 
 int ft_char_forbidden(int i){
-    if (i => 9 && i =< 13){
+    if (i >= 9 && i <= 13){
         return(1);
-    } if else (i == 32){
+    } else if (i == 32){
         return(1);
     }
     return (0);

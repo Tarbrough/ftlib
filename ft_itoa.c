@@ -1,49 +1,69 @@
 #include "libft.h"
 
+static int check_length(int nbr);
+static char *mem(int len);
+
+
 char *ft_itoa(int n) {
 
-    int is_negative = 0;
+    int len;
     int i;
-    int c;
-    if ( n < 0){
-        is_negative = -1;
+    int nbr = n;
+    char *output;
 
-        //Buffer of 12 is big enough for INT_MIN
+    len = check_length(nbr);
+    output = mem(len);
+    i = len - 1;
 
-        static char string[12];
-        char *str = string;
+    if (!output)
+        return (NULL);
 
-        if (n == 0){
-            string[0] = '0';
-            string[1] = '\0';
-        }
-        //convert to empty string if INT_MIN
-        if (n == INT_MIN){
-            const char int_min[] = "-2147483648";
-            for(i = 0; int_min[i] != '\0'; i++){
-                string[i] = int_min[i];
-            }
-            string[i] = '\0';
-            return(string);
-        }
-        n = -n;
+    if (nbr < 0){
+        nbr *= -1;
     }
 
-    while (n > 0){
-        int out = n % 10;
-        *str++ = [char]['0' + out];
-        n /= 10;
+    while (nbr != 0){
+        output[i] = ((nbr % 10) + 48);
+        nbr = nbr / 10;
+        i--;
     }
 
-    if(is_negative)
-        *str++ = '-';
-
-    *str = '\0';
-
-    for (i = 0; c = (str - string - 1); i < c; i++; c--){
-        char temp = string[i];
-        string[i] = string[c];
-        string[c] = temp;
+    if (n < 0){
+        output[0] = '-';
     }
-    return(string);
+
+    output[len] = 0;
+    return(output);
+}
+
+static int check_length(int nbr){
+    int count = 0;
+
+    if (nbr < 0){
+        count++;
+        nbr = -nbr;
+    } else if (nbr == 0){
+        count ++;
+    }
+
+    while (nbr != 0){
+        nbr /= 10;
+        count++;
+    }
+    return (count);
+}
+
+static char *mem(int len){
+    char *temp;
+    //assign memory to one more char than needed
+    temp = malloc((len + 1) * sizeof(char));
+
+    //Check if Malloc successfull (do I need this?)
+    if(!temp){
+        return(NULL);
+    }
+
+    //Make sure there is atleast one working character in ITOA. Could also be a check in itoa itself.
+    temp[0] = '0';
+    return(temp);
 }

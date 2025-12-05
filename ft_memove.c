@@ -1,30 +1,28 @@
 #include "libft.h"
 
-void *ft_memmove(void *dest, const void *src, int size){
+void *ft_memmove(void *dest, const void *src, size_t n){
     char *cdest;
     char *csrc;
-    int count;
+    size_t size = 0;
 
-    cdest = dest;
-    csrc = src;
+
+    cdest = (char*)dest;
+    csrc = (char*)src;
 
     if (!dest && !src){
-        return (0);
-    } else if (!dest) {
-        return(NULL);
+        return (NULL);
     }
 
-    if (dest <= src){
-        while(size--){
-            *cdest++ = *csrc++;
+    if (cdest > csrc){
+        while(n > 0){
+            cdest[n] = csrc[n];
+            n--;
         }
-    } else if (dest > src){
-        cdest = cdest + (size - 1);
-        csrc = csrc + (size - 1);
-        while (size--){
-            *cdest-- = *csrc--;
+    } else {
+        while(size < n){
+            cdest[size] = csrc[size];
+            size++;
         }
-
     }
     return (dest);
 }

@@ -2,28 +2,24 @@
 
 char *ft_strjoin(char const *s1, char const *s2){
 
-    size_t s1_size;
-    size_t s2_size;
-    size_t len;
-    char *out;
+    char* str;
+    size_t i = 0;
+    size_t j = 0;
 
-    if (!s1 || !s2)
+    str = (char *) malloc((ft_strlen(s1)+ ft_strlen(s2) + 1) * sizeof(char));
+    if (!str)
         return (NULL);
 
-    s1_size = ft_strlen(s1);
-    s2_size = ft_strlen(s2);
+    while(s1[i]){
+        str[j++] = s1[i++];
+    }
 
-    if (s1_size > SIZE_MAX - s2_size -1)
-        return (NULL);
+    i = 0;
+    while (s2[i]){
+        str[j++] = s2[i++];
 
-    len = s1_size + s2_size;
-    out = (char *) malloc(sizeof(char) * (len + 1));
-    if (!out)
-        return(NULL);
+    }
 
-    ft_memcpy(out, s1, s1_size);
-    ft_memcpy(out + s1_size, s2, s2_size);
-    out[len] = '\0';
-    return(out);
-
+    str[j] = 0;
+    return(str);
 }

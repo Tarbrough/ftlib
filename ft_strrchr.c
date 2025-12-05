@@ -1,12 +1,13 @@
 #include "libft.h"
 
-char *strrchr(const char *src, int c){
+char *ft_strrchr(const char *src, int c){
     int count;
+    const char *temp = src;
     count = sizeof(src);
 
     while (count >= 0){
-        if(*src == c){
-            return (src);
+        if(*temp == c){
+            return ((char *)src);
         }
         count--;
     }

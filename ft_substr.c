@@ -20,6 +20,6 @@ char *ft_substr(char const *src, unsigned int start, size_t len){
     if (!sub)
         return(NULL);
 
-    ft_strlcpy(sub, s + start, len + 1);
+    ft_strlcpy(sub, src + start, len + 1);
     return(sub);
 }
