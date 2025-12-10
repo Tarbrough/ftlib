@@ -7,7 +7,7 @@ int ft_atoi(const char *src){
     int i;
 
     output = 0;
-    int negpos = 0;
+    int negpos = 1;
     i = 0;
 
     while (ft_char_forbidden(src[i]))
@@ -21,7 +21,7 @@ int ft_atoi(const char *src){
         i++;
     }
 
-    while (src[i] && src[i] >= 48 && src[i] <= 56){
+    while (src[i] && src[i] >= 48 && src[i] <= 57){
         output *= 10;
         output += src[i] -48;
         i++;

@@ -24,10 +24,10 @@ char **ft_split(char const *s, char c) {
     j = 0;
     start = 0;
 
-    while(s[i])
+    while(s[i] != '\0')
     {
         //word_start
-        if(s[i] != c && (i == 0 || s[i+1]  == c)){
+        if(s[i] != c && (i == 0 || s[i-1]  == c)){
             start = i;
         }
 
@@ -54,13 +54,14 @@ int word_count(char const *str, char delimiter){
     int count = 0;
     int i = 0;
 
-    while(*str){
+    while(*str != '\0'){
         if (*str != delimiter && i == 0){
             i = 1;
             count++;
         } else if(*str == delimiter){
             i = 0;
         }
+        str++;
     }
     return (count);
 }

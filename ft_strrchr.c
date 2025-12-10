@@ -1,15 +1,18 @@
 #include "libft.h"
 
 char *ft_strrchr(const char *src, int c){
-    int count;
-    const char *temp = src;
-    count = sizeof(src);
+    const char *out;
+    unsigned char ch = (unsigned char)c;
 
-    while (count >= 0){
-        if(*temp == c){
-            return ((char *)src);
+    out = '\0';
+    while(*src){
+        if((unsigned char)*src == ch){
+            out = src;
         }
-        count--;
+        src++;
     }
-    return (0);
+
+    if (ch == '\0')
+        return((char *)src);
+    return((char *)out);
 }

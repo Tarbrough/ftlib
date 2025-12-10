@@ -1,6 +1,6 @@
 #include "libft.h"
 
-static int check_length(int nbr);
+static int check_length(long nbr);
 static char *mem(int len);
 
 
@@ -8,7 +8,7 @@ char *ft_itoa(int n) {
 
     int len;
     int i;
-    int nbr = n;
+    long nbr = n;
     char *output;
 
     len = check_length(nbr);
@@ -36,7 +36,7 @@ char *ft_itoa(int n) {
     return(output);
 }
 
-static int check_length(int nbr){
+static int check_length(long nbr){
     int count = 0;
 
     if (nbr < 0){
