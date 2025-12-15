@@ -21,9 +21,9 @@ char	*ft_itoa(int n)
 	static long		nbr;
 	char			*output;
 
+	nbr = n;
 	len = check_length(nbr);
 	output = mem(len);
-	nbr = n;
 	i = len - 1;
 	if (!output)
 		return (NULL);
