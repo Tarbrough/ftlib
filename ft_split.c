@@ -11,95 +11,98 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int word_count(char const *str, char delimiter);
-void ft_free(char **str, int c);
-char *append_word(char const*str, int start, int end);
+int				word_count(char const *str, char delimiter);
+static void		*ft_free(char **str, int c);
+char			*append_word(char const*str, int start, int end);
+static void		variable_set(int *i, int *start, int *j);
 
-char **ft_split(char const *s, char c) {
+char	**ft_split(char const *s, char c)
+{
+	char		**word;
+	int			i;
+	int			start;
+	int			j;
 
-    char **word;
-    size_t i = 0; //INDEX
-    size_t start = 0;
-    int j;
-    int c_word;
-
-    if (!s)
-        return(NULL);
-    c_word = word_count(s, c);
-    word = ft_calloc(c_word + 1, sizeof(char *));
-
-    if(!word)
-        return(NULL);
-
-    i = 0;
-    j = 0;
-    start = 0;
-
-    while(s[i] != '\0')
-    {
-        //word_start
-        if(s[i] != c && (i == 0 || s[i-1]  == c)){
-            start = i;
-        }
-
-        //word_end
-        if(s[i] != c && (s[i + 1] == c || s[i + 1] == '\0')){
-            word[j] = append_word(s, start, i + 1);
-            if(!word[j]){
-                ft_free(word, j);
-                return(NULL);
-            }
-            j++;
-        }
-        i++;
-    }
-    word[j] = NULL;
-    return (word);
-
-
+	variable_set(&i, &start, &j);
+	word = ft_calloc(word_count(s, c) + 1, sizeof(char *));
+	if (!word)
+		return (NULL);
+	while (i <= ft_strlen(s))
+	{
+		if (s[i] != c && start < 0)
+			start = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && start >= 0)
+		{
+			word[j] = append_word(s, start, i);
+			if (!(word[j]))
+				return (ft_free(word, j));
+			start = -1;
+			j++;
+		}
+		i++;
+	}
+	return (word);
 }
 
-//Check how many limiters we have, because limiter count = word count.
-//Likely could be done in split, but hey.
-int word_count(char const *str, char delimiter){
-    int count = 0;
-    int i = 0;
+int	word_count(char const *str, char delimiter)
+{
+	size_t	count;
+	size_t	i;
 
-    while(*str != '\0'){
-        if (*str != delimiter && i == 0){
-            i = 1;
-            count++;
-        } else if(*str == delimiter){
-            i = 0;
-        }
-        str++;
-    }
-    return (count);
+	count = 0;
+	i = 0;
+	while (*str != '\0')
+	{
+		if (*str != delimiter && i == 0)
+		{
+			i = 1;
+			count++;
+		}
+		else if (*str == delimiter)
+		{
+			i = 0;
+		}
+		str++;
+	}
+	return (count);
 }
 
-void ft_free(char **str, int c){
-    int i = 0;
-    while (i < c){
-        free(str[i]);
-        i++;
-    }
-    free(str);
+static void	*ft_free(char **str, int c)
+{
+	int	i;
+
+	i = 0;
+	while (i < c)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	return (NULL);
 }
 
-char *append_word(char const*str, int start, int end){
-    char *word;
-    int i = 0;
+char	*append_word(char const*str, int start, int end)
+{
+	char	*word;
+	size_t	i;
 
-    word = malloc(((end - start) + 1) * sizeof(char));
-    if(!word)
-        return(NULL);
+	i = 0;
+	word = malloc(((end - start) + 1) * sizeof(char));
+	if (!word)
+		return (NULL);
+	while (start < end)
+	{
+		word[i] = str[start];
+		i++;
+		start++;
+	}
+	word[i] = 0;
+	return (word);
+}
 
-    while (start < end){
-        word[i] = str[start];
-        i++;
-        start++;
-    }
-    //terminate string, MIGHT have to be '\0'
-    word[i] = 0;
-    return(word);
+static void	variable_set(int *i, int *start, int *j)
+{
+	*i = 0;
+	*j = 0;
+	*start = -1;
 }

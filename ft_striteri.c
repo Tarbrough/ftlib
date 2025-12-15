@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbauch <jbauch@student.42wolfsburg.de>      +#+  +:+       +#+       */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,14 +11,16 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_isprint(int c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	if (c >= 32 && c <= 126)
+	unsigned int	i;
+
+	if (!s || !f)
+		return ;
+	i = 0;
+	while (s[i])
 	{
-		return (1);
-	}
-	else
-	{
-		return (0);
+		f(i, s + i);
+		i++;
 	}
 }
