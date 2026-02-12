@@ -4,6 +4,15 @@
 #   include <stdarg.h>
 #   include <unistd.h>
 
+typedef struct s_list
+{
+    /* data */
+    int i;
+    int printed;
+    va_list args
+}   t_list;
+
+
 /*Main*/
 int ft_printf(const char *string, ...);
 
