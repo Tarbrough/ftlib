@@ -23,3 +23,21 @@ void	*ft_memset(void *s, int c, size_t n)
 	}
 	return (s);
 }
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+	char *test;
+	test = (char *)malloc(5 * sizeof(char));
+
+	test[0] = 'a';
+	test[1] = 'b';
+	test[2] = 'c';
+	test[3] = 'd';
+	test[4] = '\0';
+	ft_memset((void *)test, 43846238, 1);
+	printf("%s\n", test);
+	return (0);
+}
